@@ -1,6 +1,34 @@
+-- Tabela de Publicadoras
+create table publicadoras(
+    id int not null,
+    nome varchar(50) not null,
+    sede varchar(50) not null,
+    primary key (id)
+);
 
+-- Tabela de Jogos
+create table jogos (
+    id int not null,
+    titulo varchar(60),
+    resumo varchar(800),
+    preco_base boolean not null,
+    primary key (id)
+);
 
+-- Tabela de DLCs
+create table dlcs (
+    id int not null,
+    titulo varchar(60),
+    preco boolean not null,
+    primary key (id)
+);
 
+-- Tabela de generos
+create table generos (
+    id int not null,
+    nome_genero varchar(40),
+    primary key (id)
+);
 
 -- Tabela de Tags
 create table tags (

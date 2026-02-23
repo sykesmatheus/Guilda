@@ -11,7 +11,7 @@ create table jogos (
     id int not null,
     titulo varchar(60),
     resumo varchar(800),
-    preco_base boolean not null,
+    preco_base decimal (10,2),
     primary key (id)
 );
 
@@ -19,7 +19,7 @@ create table jogos (
 create table dlcs (
     id int not null,
     titulo varchar(60),
-    preco boolean not null,
+    preco decimal (10,2),
     primary key (id)
 );
 

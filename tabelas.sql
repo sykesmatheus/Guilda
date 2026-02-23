@@ -1,3 +1,4 @@
+
 -- Tabela biblioteca (jogos adquiridos por usuário)
 CREATE TABLE biblioteca (
     id_usuario INTEGER NOT NULL,
@@ -64,3 +65,42 @@ CREATE TABLE estatistica_jogo (
     valor NUMERIC,
     PRIMARY KEY (id_usuario, id_jogo, nome_estatistica)
 );
+
+
+create table avaliacao (
+	id int not null primary key,
+	id_usuario int not null,
+	id_jogo int not null,
+	texto text,
+	recomendado_bool boolean,
+	data_postagem date
+);
+
+create table oficina_mod (
+	id int not null primary key,
+	id_jogo int not null,
+	id_autor int not null,
+	nome_mod varchar(100),
+	link_arquivo varchar(300)
+);
+
+create table ticket_suporte (
+	id int not null primary key,
+	id_usuario int not null,
+	assunto varchar(200),
+	status_ticket varchar(50)
+);
+
+create table mensagem_ticket (
+	id int not null primary key,
+	id_ticket int not null,
+	remetente_tipo varchar (50),
+	mensagem text
+);
+
+create table banimento (
+id_usuario int not null primary key,
+motivo_banimento text,
+data_expiracao date
+); 
+>>>>>>> 2730d8f5e5e1dbcd36e5cba29cd8beac6c9da799

@@ -1,5 +1,5 @@
 -- Tabela de Publicadoras
-create table publicadoras(
+create table publicadora(
     id int not null,
     nome varchar(50) not null,
     sede varchar(50) not null,
@@ -7,7 +7,7 @@ create table publicadoras(
 );
 
 -- Tabela de Jogos
-create table jogos (
+create table jogo (
     id int not null,
     titulo varchar(60),
     resumo varchar(800),
@@ -16,7 +16,7 @@ create table jogos (
 );
 
 -- Tabela de DLCs
-create table dlcs (
+create table dlc (
     id int not null,
     titulo varchar(60),
     preco decimal (10,2),
@@ -24,36 +24,45 @@ create table dlcs (
 );
 
 -- Tabela de generos
-create table generos (
+create table genero (
     id int not null,
     nome_genero varchar(40),
     primary key (id)
 );
 
 -- Tabela de Tags
-create table tags (
+create table tag (
     id int not null,
     nome_tag varchar(50) not null,
     primary key (id)
 );
 
+-- Tabela de jogo_genero (relacionamento N:N)
+create table jogo_genero (
+    id int not null,
+    id_jogo int,
+    id_genero int,
+    primary key (id)
+    );
+
 -- Tabela de Jogos_Tags (Relacionamento N:N)
-create table jogos_tags (
+create table jogo_tag (
+    id int not null,
     id_jogo int not null,
     id_tag int not null,
     numero_votos int default 0,
-    primary key (id_jogo, id_tag)
+    primary key (id)
 );
 
 -- Tabela de Idiomas
-create table idiomas (
+create table idioma (
     id int not null,
     nome_idioma varchar(50) not null,
     primary key (id)
 );
 
 -- Tabela de Jogos_Idiomas
-create table jogos_idioma (
+create table jogo_idioma (
     id int not null,
     id_jogo int not null,
     id_idioma int not null,
@@ -63,7 +72,7 @@ create table jogos_idioma (
 );
 
 -- Tabela de Requisitos_Sistema
-create table requisitos_sistema (
+create table requisito_sistema (
     id int not null,
     id_jogo int not null,
     tipo varchar(10) not null, -- 'Min' ou 'Rec'

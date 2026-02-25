@@ -53,12 +53,13 @@ create table idiomas (
 );
 
 -- Tabela de Jogos_Idiomas
-create table jogos_idiomas (
+create table jogos_idioma (
+    id int not null,
     id_jogo int not null,
     id_idioma int not null,
     dublado_bool boolean,
     legendado_bool boolean,
-    primary key (id_jogo, id_idioma)
+    primary key (id)
 );
 
 -- Tabela de Requisitos_Sistema

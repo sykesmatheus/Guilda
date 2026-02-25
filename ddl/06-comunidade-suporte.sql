@@ -1,36 +1,36 @@
-CREATE TABLE avaliacoes (
-    id INT NOT NULL PRIMARY KEY,
-    id_usuario INT NOT NULL,
-    id_jogo INT NOT NULL,
-    texto_avaliacao TEXT,
-    recomendado_bool BOOLEAN,
-    data_postagem DATE
+create table avaliacao (
+	id int not null primary key,
+	id_usuario int not null,
+	id_jogo int not null,
+	texto text,
+	recomendado_bool boolean,
+	data_postagem date
 );
 
-CREATE TABLE oficinas_mods (
-    id INT NOT NULL PRIMARY KEY,
-    id_jogo INT NOT NULL,
-    id_autor INT NOT NULL,
-    nome_mod VARCHAR(100),
-    link_arquivo VARCHAR(300)
+create table oficina_mod (
+	id int not null primary key,
+	id_jogo int not null,
+	id_autor int not null,
+	nome_mod varchar(100),
+	link_arquivo varchar(300)
 );
 
-CREATE TABLE tickets_suporte (
-    id INT NOT NULL PRIMARY KEY,
-    id_usuario INT NOT NULL,
-    assunto VARCHAR(200),
-    status_ticket VARCHAR(50)
+create table ticket_suporte (
+	id int not null primary key,
+	id_usuario int not null,
+	assunto varchar(200),
+	status_ticket varchar(50)
 );
 
-CREATE TABLE mensagens_tickets (
-    id INT NOT NULL PRIMARY KEY,
-    id_ticket INT NOT NULL,
-    remetente_tipo VARCHAR(50),
-    mensagem TEXT
+create table mensagem_ticket (
+	id int not null primary key,
+	id_ticket int not null,
+	remetente_tipo varchar (50),
+	mensagem text
 );
 
-CREATE TABLE banimentos (
-    id_usuario INT NOT NULL PRIMARY KEY,
-    motivo_banimento TEXT,
-    data_expiracao DATE
-);
+create table banimento (
+id_usuario int not null primary key,
+motivo_banimento text,
+data_expiracao date
+); 

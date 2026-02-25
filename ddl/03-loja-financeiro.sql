@@ -1,24 +1,24 @@
-create table moedas (
+create table moeda (
 	id_moeda int not null,
 	codigo_moeda varchar(3) not null ,
 	simbolo_moeda varchar(5),
 	primary key (id_moeda)
 );
 
-create table precos_regionais (
+create table preco_regional (
 	id_jogo int not null,
 	id_moeda int not null,
 	valor_localizado decimal (10,2),
 	primary key (id_jogo, id_moeda)
 );
 
-create table metodos_pagamento (
+create table metodo_pagamento (
 	id_metodo int not null,
 	nome_metodo varchar(50) not null,
 	primary key (id_metodo)
 );
 
-create table transacoes (
+create table transacao (
 	id_transacao int not null,
 	id_usuario int not null,
 	id_metodo int not null ,
@@ -28,7 +28,7 @@ create table transacoes (
 	primary key (id_transacao)
 );
 
-create table itens_transacao(
+create table iten_transacao(
 	id_transacao int not null,
 	id_jogo int not null,
 	preco_vendido decimal(10,2),
@@ -42,7 +42,7 @@ create table lista_desejo(
 	primary key (id_usuario, id_jogo)
 );
 
-create table cupons (
+create table cupom (
 	id_cupom int not null,
 	codigo_cupom varchar(20) not null,
 	desconto_percentual int,

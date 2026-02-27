@@ -1,53 +1,53 @@
-CREATE TABLE itens_bases (
-    id SERIAL PRIMARY KEY,
-    nome TEXT,
-    raridade TEXT,
+CREATE TABLE item_base (
+    id INT not null,
+    nome VARCHAR(50),
+    raridade VARCHAR(50),
     id_jogo_origem INT
 );
 
-CREATE TABLE inventarios_usuarios (
-    id_serial SERIAL PRIMARY KEY,
-    id_item_base INT,
-    id_usuario_dono INT
+CREATE TABLE inventario_usuario (
+    id INT not null,
+    id_item_base INT not null,
+    id_usuario_dono INT not null
 );
 
-CREATE TABLE mercados_anuncios (
-    id SERIAL PRIMARY KEY,
-    id_serial_item INT,
+CREATE TABLE mercado_anuncio  (
+    id INT not null,
+    id_serial_item INT not null,
     preco_venda DECIMAL,
-    id_vendedor INT
+    id_vendedor INT not null
 );
 
-CREATE TABLE mercados_historicos (
-    id SERIAL PRIMARY KEY,
-    id_item_base INT,
+CREATE TABLE mercado_historico (
+    id INT not null,
+    id_item_base INT not null,
     valor_venda DECIMAL,
     data_venda TIMESTAMP DEFAULT CURRENT_TIMESTAMP
 );
 
-CREATE TABLE ofertas_trocas (
-    id SERIAL PRIMARY KEY,
-    id_remetente INT,
-    id_destinatario INT,
-    status TEXT
+CREATE TABLE oferta_troca (
+    id INT not null,
+    id_remetente INT not null,
+    id_destinatario INT not null,
+    status VARCHAR(50)
 );
 
-CREATE TABLE itens_ofertas_trocas (
-    id_oferta INT,
-    id_serial_item INT,
-    PRIMARY KEY (id_oferta, id_serial_item)
+CREATE TABLE item_oferta_troca (
+    id_oferta INT not null,
+    id_serial_item INT not null,
+    PRIMARY KEY (id_oferta)
 );
 
-CREATE TABLE insignias (
-    id SERIAL PRIMARY KEY,
-    nome TEXT,
+CREATE TABLE insignia (
+    id INT not null,
+    nome VARCHAR(50),
     xp_recompensa INT,
     id_jogo INT
 );
 
-CREATE TABLE insignias_usuarios (
-    id_usuario INT,
-    id_insignia INT,
-    nivel INT,
-    PRIMARY KEY (id_usuario, id_insignia)
+CREATE TABLE insignia_usuario (
+    id_usuario INT not null,
+    id_insignia INT not null,
+    nivel INT not null,
+    PRIMARY KEY (id_usuario)
 );

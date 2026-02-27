@@ -1,67 +1,77 @@
--- Tabela biblioteca (jogos adquiridos por usuário)
-CREATE TABLE biblioteca (
-    id_usuario INTEGER NOT NULL,
-    id_jogo INTEGER NOT NULL,
-    tempo_jogado_min INTEGER DEFAULT 0,
-    data_aquisicao TIMESTAMP DEFAULT NOW(),
-    PRIMARY KEY (id_usuario, id_jogo)
+-- tabela biblioteca (jogos adquiridos por usuário)
+create table biblioteca (
+    id int primary key,
+    id_usuario int not null,
+    id_jogo int not null,
+    tempo_jogado_min int,
+    data_aquisicao timestamp,
+    unique (id_usuario, id_jogo),
+    constraint fk_biblioteca_usuario
+        foreign key (id_usuario)
+        references usuario(id)
+        on delete cascade,
+    constraint fk_biblioteca_jogo
+        foreign key (id_jogo)
+        references jogo(id)
+        on delete cascade
 );
 
--- Tabela conquista (conquitas por jogo)
-CREATE TABLE conquista (
-    id SERIAL PRIMARY KEY,
-    id_jogo INTEGER NOT NULL,
-    nome VARCHAR(200) NOT NULL,
-    descricao TEXT
+-- tabela conquista (conquistas por jogo)
+create table conquista (
+    id int primary key,
+    id_jogo int not null,
+    nome varchar(200) not null,
+    descricao varchar(255) not null,
+    constraint fk_conquista_jogo
+        foreign key (id_jogo)
+        references jogo(id)
+        on delete cascade
 );
 
--- Tabela conquista_usuario (conquistas desbloqueadas)
-CREATE TABLE conquista_usuario (
-    id_usuario INTEGER NOT NULL,
-    id_conquista INTEGER NOT NULL,
-    data_desbloqueio TIMESTAMP DEFAULT NOW(),
-    PRIMARY KEY (id_usuario, id_conquista)
+-- tabela conquista_usuario (conquistas desbloqueadas)
+create table conquista_usuario (
+    id int primary key,
+    id_usuario int not null,
+    id_conquista int not null,
+    data_desbloqueio timestamp default now(),
+    unique (id_usuario, id_conquista),
+    constraint fk_conquista_usuario_usuario
+        foreign key (id_usuario)
+        references usuario(id)
+        on delete cascade,
+    constraint fk_conquista_usuario_conquista
+        foreign key (id_conquista)
+        references conquista(id)
+        on delete cascade
 );
 
--- Tabela save_jogo (arquivos de save na nuvem)
-CREATE TABLE save_jogo (
-    id SERIAL PRIMARY KEY,
-    id_usuario INTEGER NOT NULL,
-    id_jogo INTEGER NOT NULL,
-    link_arquivo VARCHAR(500) NOT NULL,
-    data_sync TIMESTAMP DEFAULT NOW()
+-- tabela save_jogo (arquivos de save na nuvem)
+create table save_jogo (
+    id int primary key,
+    id_usuario int not null,
+    id_jogo int not null,
+    link_arquivo varchar(500) not null,
+    data_sync timestamp default now(),
+    constraint fk_save_jogo_usuario
+        foreign key (id_usuario)
+        references usuario(id)
+        on delete cascade,
+    constraint fk_save_jogo_jogo
+        foreign key (id_jogo)
+        references jogo(id) 
 );
 
--- Tabela categoria_biblioteca (categorias personalizadas do usuário)
-CREATE TABLE categoria_biblioteca (
-    id_usuario INTEGER NOT NULL,
-    nome_categoria VARCHAR(100) NOT NULL,
-    PRIMARY KEY (id_usuario, nome_categoria)
+-- tabela historico_sessao (registro de sessões de jogo)
+create table historico_sessao (
+    id int primary key,
+    id_usuario int not null,
+    id_jogo int not null,
+    data_inicio timestamp not null,
+    data_fim timestamp,
+    constraint fk_sessao_usuario
+        foreign key (id_usuario)
+        references usuario(id),
+    constraint fk_sessao_jogo
+        foreign key (id_jogo)
+        references jogo(id)      
 );
-
--- Tabela biblioteca_categoria (relaciona jogos da biblioteca com categorias)
-CREATE TABLE biblioteca_categoria (
-    id_usuario_categoria INTEGER NOT NULL,   -- usuário dono da categoria
-    nome_categoria VARCHAR(100) NOT NULL,    -- nome da categoria
-    id_jogo INTEGER NOT NULL,                 -- jogo categorizado
-    PRIMARY KEY (id_usuario_categoria, nome_categoria, id_jogo)
-);
-
--- Tabela historico_sessao (registro de sessões de jogo)
-CREATE TABLE historico_sessao (
-    id SERIAL PRIMARY KEY,
-    id_usuario INTEGER NOT NULL,
-    id_jogo INTEGER NOT NULL,
-    data_inicio TIMESTAMP NOT NULL,
-    data_fim TIMESTAMP
-);
-
--- Tabela estatistica_jogo (estatísticas variadas por jogo)
-CREATE TABLE estatistica_jogo (
-    id_usuario INTEGER NOT NULL,
-    id_jogo INTEGER NOT NULL,
-    nome_estatistica VARCHAR(100) NOT NULL,
-    valor NUMERIC,
-    PRIMARY KEY (id_usuario, id_jogo, nome_estatistica)
-);
-

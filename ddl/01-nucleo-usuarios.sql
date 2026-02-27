@@ -3,7 +3,7 @@ create table usuarios (
 	id int not null,
 	email varchar(150) not null,
 	senha_hash varchar(150) not null,
-	data_criacao datatime not null,
+	data_criacao datatime not null, -- esse tipo não existe no postgress (matheus) tente usar timestamp
 	saldo_carteira decimal(10,2) default,
 	primary key (id)
 );

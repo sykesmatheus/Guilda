@@ -1,5 +1,5 @@
 -- Tabela de Usuários
-create table usuarios (
+create table usuario (
 	id int not null,
 	email varchar(150) not null,
 	senha_hash varchar(150) not null,
@@ -9,7 +9,7 @@ create table usuarios (
 );
 
 -- Tabela de Perfis
-create table perfis (
+create table perfi (
 	id int not null,
 	nick_name varchar(50) not null,
 	bio varchar(250),
@@ -19,7 +19,7 @@ create table perfis (
 );
 
 -- Tabela de Amizades
-create table amizades (
+create table amizade (
 	id int not null,
 	id_a int not null
 	id_b int not null
@@ -28,7 +28,7 @@ create table amizades (
 	primary key (id)
 );
 -- Tabela de Lista de Bloqueio
-create table listas_bloqueio (
+create table lista_bloqueio (
 	id int not null,
 	id_usuario int not null,
 	id_usuario_bloqueado int not null,
@@ -36,7 +36,7 @@ create table listas_bloqueio (
 );
 
 -- Tabela de Grupos
-create table grupos (
+create table grupo (
     id int not null,
     nome varchar(100) not null,
     descricao varchar(255),
@@ -45,7 +45,7 @@ create table grupos (
 );
 
 -- Tabela de Membros do Grupo
-create table membros_grupo (
+create table membro_grupo (
 	id int not null,
     id_grupo int not null,
     id_usuario int not null,
@@ -54,7 +54,7 @@ create table membros_grupo (
 );
 
 -- Tabela de Notificacoes
-create table notificacoes (
+create table notificacoe (
     id int not null,
     id_usuario int not null,
     mensagem varchar(255) not null,

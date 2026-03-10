@@ -1,59 +1,76 @@
-create table moeda (
-	id_moeda int not null,
-	codigo_moeda varchar(3) not null ,
-	simbolo_moeda varchar(5),
-	primary key (id_moeda)
+
+CREATE TABLE moeda (
+    id INT NOT NULL PRIMARY KEY,
+    codigo VARCHAR(3) NOT NULL,
+    simbolo VARCHAR(5)
 );
 
-create table preco_regional (
-	id_jogo int not null,
-	id_moeda int not null,
-	valor_localizado decimal (10,2),
-	primary key (id_jogo, id_moeda)
+CREATE TABLE metodo_pagamento (
+    id INT NOT NULL PRIMARY KEY,
+    nome VARCHAR(50) NOT NULL
 );
 
-create table metodo_pagamento (
-	id_metodo int not null,
-	nome_metodo varchar(50) not null,
-	primary key (id_metodo)
+
+CREATE TABLE preco_regional (
+    id INT NOT NULL PRIMARY KEY, 
+    id_jogo INT NOT NULL,
+    id_moeda INT NOT NULL,
+    valor_localizado DECIMAL(10,2)
 );
 
-create table transacao (
-	id_transacao int not null,
-	id_usuario int not null,
-	id_metodo int not null ,
-	valor_total decimal(10,2),
-	data_transacao timestamp,
-	status_transacao varchar(20),
-	primary key (id_transacao)
+CREATE TABLE item_transacao (
+    id INT NOT NULL PRIMARY KEY, 
+    id_transacao INT NOT NULL,
+    id_jogo INT NOT NULL,
+    preco_vendido DECIMAL(10,2)
 );
 
-create table iten_transacao(
-	id_transacao int not null,
-	id_jogo int not null,
-	preco_vendido decimal(10,2),
-	primary key (id_transacao, id_jogo)
+CREATE TABLE lista_desejo (
+    id INT NOT NULL PRIMARY KEY, 
+    id_usuario INT NOT NULL,
+    id_jogo INT NOT NULL,
+    data_adicao DATE
 );
 
-create table lista_desejo(
-	id_usuario int not null,
-	id_jogo int not null,
-	data_adicao date,
-	primary key (id_usuario, id_jogo)
+
+CREATE TABLE transacao (
+    id INT NOT NULL PRIMARY KEY,
+    id_usuario INT NOT NULL,
+    id_metodo INT NOT NULL,
+    valor_total DECIMAL(10,2),
+    data_transacao TIMESTAMP,
+    status VARCHAR(20)
 );
 
-create table cupom (
-	id_cupom int not null,
-	codigo_cupom varchar(20) not null,
-	desconto_percentual int,
-	id_usuario_dono int not null,
-	primary key (id_cupom)
+CREATE TABLE cupom (
+    id INT NOT NULL PRIMARY KEY,
+    codigo VARCHAR(20) NOT NULL,
+    desconto_percentual INT,
+    id_usuario INT NOT NULL
 );
 
-create table reembolso (
-	id_reembolso int not null,
-	id_transacao int not null,
-	motivo_reembolso text,
-	status_aprovacao varchar(20),
-	primary key (id_reembolso)
+CREATE TABLE reembolso (
+    id INT NOT NULL PRIMARY KEY,
+    id_transacao INT NOT NULL,
+    motivo VARCHAR(500),
+    status_aprovacao VARCHAR(20)
 );
+
+ALTER TABLE preco_regional ADD CONSTRAINT fk_jogo_preco FOREIGN KEY (id_jogo) REFERENCES jogo(id);
+ALTER TABLE preco_regional ADD CONSTRAINT fk_moeda_preco FOREIGN KEY (id_moeda) REFERENCES moeda(id);
+
+
+ALTER TABLE transacao ADD CONSTRAINT fk_usuario_transacao FOREIGN KEY (id_usuario) REFERENCES usuario(id);
+ALTER TABLE transacao ADD CONSTRAINT fk_metodo_transacao FOREIGN KEY (id_metodo) REFERENCES metodo_pagamento(id);
+
+
+ALTER TABLE item_transacao ADD CONSTRAINT fk_transacao_item FOREIGN KEY (id_transacao) REFERENCES transacao(id);
+ALTER TABLE item_transacao ADD CONSTRAINT fk_jogo_item FOREIGN KEY (id_jogo) REFERENCES jogo(id);
+
+
+ALTER TABLE lista_desejo ADD CONSTRAINT fk_usuario_desejo FOREIGN KEY (id_usuario) REFERENCES usuario(id);
+ALTER TABLE lista_desejo ADD CONSTRAINT fk_jogo_desejo FOREIGN KEY (id_jogo) REFERENCES jogo(id);
+
+
+ALTER TABLE cupom ADD CONSTRAINT fk_usuario_cupom FOREIGN KEY (id_usuario) REFERENCES usuario(id);
+ALTER TABLE reembolso ADD CONSTRAINT fk_transacao_reembolso FOREIGN KEY (id_transacao) REFERENCES transacao(id);

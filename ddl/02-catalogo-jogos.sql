@@ -1,6 +1,17 @@
+DROP TABLE IF EXISTS publicadora;
+DROP TABLE IF EXISTS jogo;
+DROP TABLE IF EXISTS dlc;
+DROP TABLE IF EXISTS genero;
+DROP TABLE IF EXISTS tag;
+DROP TABLE IF EXISTS jogo_genero;
+DROP TABLE IF EXISTS jogo_tag;
+DROP TABLE IF EXISTS idioma;
+DROP TABLE IF EXISTS jogo_idioma;
+DROP TABLE IF EXISTS requisito_sistema;
+
+
 -- Tabela de Publicadoras
 create table publicadora(
-    DROP TABLE IF EXISTS publicadora;
     id int not null,
     nome varchar(50) not null,
     sede varchar(50) not null,
@@ -9,7 +20,6 @@ create table publicadora(
 
 -- Tabela de Jogos
 create table jogo (
-    DROP TABLE IF EXISTS jogo;
     id int not null,
     titulo varchar(60),
     resumo varchar(800),
@@ -19,7 +29,6 @@ create table jogo (
 
 -- Tabela de DLCs
 create table dlc (
-    DROP TABLE IF EXISTS dlc;
     id int not null,
     titulo varchar(60),
     preco decimal (10,2),
@@ -28,7 +37,6 @@ create table dlc (
 
 -- Tabela de generos
 create table genero (
-    DROP TABLE IF EXISTS genero;
     id int not null,
     nome_genero varchar(40),
     primary key (id)
@@ -36,7 +44,6 @@ create table genero (
 
 -- Tabela de Tags
 create table tag (
-    DROP TABLE IF EXISTS tag;
     id int not null,
     nome_tag varchar(50) not null,
     primary key (id)
@@ -44,7 +51,6 @@ create table tag (
 
 -- Tabela de jogo_genero (relacionamento N:N)
 create table jogo_genero (
-    DROP TABLE IF EXISTS jogo_genero;
     id int not null,
     id_jogo int,
     id_genero int,
@@ -53,7 +59,6 @@ create table jogo_genero (
 
 -- Tabela de Jogos_Tags (Relacionamento N:N)
 create table jogo_tag (
-    DROP TABLE IF EXISTS jogo_tag;
     id int not null,
     id_jogo int not null,
     id_tag int not null,
@@ -63,7 +68,6 @@ create table jogo_tag (
 
 -- Tabela de Idiomas
 create table idioma (
-    DROP TABLE IF EXISTS idioma;
     id int not null,
     nome_idioma varchar(50) not null,
     primary key (id)
@@ -71,7 +75,6 @@ create table idioma (
 
 -- Tabela de Jogos_Idiomas
 create table jogo_idioma (
-    DROP TABLE IF EXISTS jogo_idioma;
     id int not null,
     id_jogo int not null,
     id_idioma int not null,
@@ -82,7 +85,6 @@ create table jogo_idioma (
 
 -- Tabela de Requisitos_Sistema
 create table requisito_sistema (
-    DROP TABLE IF EXISTS requisito_sistema;
     id int not null,
     id_jogo int not null,
     tipo varchar(10) not null, -- 'Min' ou 'Rec'

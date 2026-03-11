@@ -49,12 +49,21 @@ create table tag (
     primary key (id)
 );
 
+-- Tabela de Idiomas
+create table idioma (
+    id int not null,
+    nome_idioma varchar(50) not null,
+    primary key (id)
+);
+
 -- Tabela de jogo_genero (relacionamento N:N)
 create table jogo_genero (
     id int not null,
     id_jogo int,
     id_genero int,
     primary key (id)
+    foreign key (id_jogo) references jogo(id),
+    foreign key (id_genero) references genero(id),
     );
 
 -- Tabela de Jogos_Tags (Relacionamento N:N)
@@ -63,13 +72,6 @@ create table jogo_tag (
     id_jogo int not null,
     id_tag int not null,
     numero_votos int default 0,
-    primary key (id)
-);
-
--- Tabela de Idiomas
-create table idioma (
-    id int not null,
-    nome_idioma varchar(50) not null,
     primary key (id)
 );
 

@@ -1,3 +1,10 @@
+-- drop tables
+   DROP TABLE IF EXISTS biblioteca;
+   DROP TABLE IF EXISTS conquista;
+   DROP TABLE IF EXISTS conquista_usuario;
+   DROP TABLE IF EXISTS save_jogo;
+   DROP TABLE IF EXISTS historico sessao;
+
 -- tabela biblioteca (jogos adquiridos por usuário)
 create table biblioteca (
     id int primary key,

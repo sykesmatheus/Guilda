@@ -143,20 +143,20 @@ INSERT INTO dlc (id, titulo, preco, id_jogo) VALUES
 
 -- Jogo_Gênero (Vínculos N:N)
 INSERT INTO jogo_genero (id, id_jogo, id_genero) VALUES 
-(1, 10, 1), -- Elden Ring é RPG
-(2, 10, 3), -- Elden Ring é Soulslike
-(3, 11, 1); -- Cyberpunk é RPG
+(1, 10, 1), 
+(2, 10, 3), 
+(3, 11, 1);
 
 -- Jogo_Tag (Vínculos N:N)
 INSERT INTO jogo_tag (id, id_jogo, id_tag, numero_votos) VALUES 
-(1, 10, 1, 5000), -- Elden Ring: Mundo Aberto
-(2, 10, 2, 8000), -- Elden Ring: Difícil
-(3, 11, 3, 4500); -- Cyberpunk: Cyberpunk
+(1, 10, 1, 5000), 
+(2, 10, 2, 8000), 
+(3, 11, 3, 4500); 
 
 -- Jogo_Idioma (Vínculos N:N)
 INSERT INTO jogo_idioma (id, id_jogo, id_idioma, dublado_bool, legendado_bool) VALUES 
-(1, 10, 1, false, true), -- Elden Ring: Legendas em PT-BR
-(2, 11, 1, true, true);  -- Cyberpunk: Dublado e Legendado em PT-BR
+(1, 10, 1, false, true), 
+(2, 11, 1, true, true);  
 
 -- Requisitos de Sistema
 INSERT INTO requisito_sistema (id, id_jogo, tipo, cpu, gpu, ram, os) VALUES 
